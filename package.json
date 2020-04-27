@@ -1,0 +1,29 @@
+{
+  "name": "secure_restapi_demo",
+  "version": "1.0.0",
+  "description": "simple nodejs rest api with authentication, login, signup and find user implemented using JWT",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js",
+    "build": "babel src --out-dir dist"
+  },
+  "author": "Abdullah Sami",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.7.6",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.13"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.5",
+    "nodemon": "^2.0.2"
+  }
+}
