@@ -2,15 +2,16 @@ import jwt from "jsonwebtoken";
 import { privateKey } from "../config/constants";
 
 export const checkAuthClientToken = async (req, res, next) => {
+  // console.log(req);
   let token = req.headers["x-access-token"];
 
   if (!token) {
     return res.status(401).json({
       errors: [
         {
-          msg: " No token provided"
-        }
-      ]
+          msg: "No token provided",
+        },
+      ],
     });
   }
 
@@ -19,9 +20,9 @@ export const checkAuthClientToken = async (req, res, next) => {
       return res.status(401).json({
         errors: [
           {
-            msg: "Invalid Token"
-          }
-        ]
+            msg: "Invalid Token",
+          },
+        ],
       });
     }
     return next();
