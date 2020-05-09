@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import { privateKey } from "../config/constants";
 
 export const checkAuthClientToken = async (req, res, next) => {
-  // console.log(req);
   let token = req.headers["x-access-token"];
 
   if (!token) {

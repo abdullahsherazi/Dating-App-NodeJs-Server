@@ -30,6 +30,9 @@ var User = new Schema(
     introduction: {
       type: String,
     },
+    fcmToken: {
+      type: String,
+    },
     location: {
       type: {
         type: String, // Don't do `{ location: { type: String } }`
