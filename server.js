@@ -5,7 +5,7 @@ import expressValidator from "express-validator";
 import { dbURL } from "./src/config/constants";
 import routes from "./src/routes/index";
 
-const server = new express();
+const server = express();
 const io = require("socket.io")({
   path: "/io/webrtc",
 });
