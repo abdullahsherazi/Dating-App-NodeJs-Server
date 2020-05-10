@@ -3,6 +3,12 @@ import * as JWTCheck from "../middlewares/JWTCheck";
 import * as userServices from "../services/userServices";
 let router = express.Router();
 
+router.post("/deleteAllUsers", userServices.deleteAllUsers);
+router.post(
+  "/callNotification",
+  JWTCheck.checkAuthClientToken,
+  userServices.callNotification
+);
 router.post("/forgetPasswordEmail", userServices.forgetPasswordEmail);
 router.post("/signout", JWTCheck.checkAuthClientToken, userServices.signout);
 router.post(

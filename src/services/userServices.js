@@ -95,29 +95,27 @@ export const signin = async (req, res, next) => {
         }
       )
       .then(() => {
-        res
-          .status(200)
-          .json({
-            msg: "user login successfully",
-            emailAddress: isUserExists.emailAddress,
-            token: token,
-            name: isUserExists.name,
-            avatar: isUserExists.avatar,
-            mobileNumber: isUserExists.mobileNumber,
-            gender: isUserExists.gender,
-            location: isUserExists.location,
-            introduction: isUserExists.introduction,
-            fcmToken: req.body.fcmToken,
-          })
-          .catch(() => {
-            res.status(409).json({
-              errors: [
-                {
-                  msg: "unable to update fcm token",
-                },
-              ],
-            });
-          });
+        return res.status(200).json({
+          msg: "user login successfully",
+          emailAddress: isUserExists.emailAddress,
+          token: token,
+          name: isUserExists.name,
+          avatar: isUserExists.avatar,
+          mobileNumber: isUserExists.mobileNumber,
+          gender: isUserExists.gender,
+          location: isUserExists.location,
+          introduction: isUserExists.introduction,
+          fcmToken: req.body.fcmToken,
+        });
+      })
+      .catch(() => {
+        return res.status(409).json({
+          errors: [
+            {
+              msg: "unable to update fcm token",
+            },
+          ],
+        });
       });
   } catch (error) {
     return res.status(500).json({
@@ -150,7 +148,7 @@ export const updateProfile = async (req, res, next) => {
         ],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       msg: "Profile Updated",
     });
   } catch (error) {
@@ -187,7 +185,7 @@ export const updateLocation = async (req, res, next) => {
         ],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       msg: "Location Updated",
       location: user.location,
     });
@@ -219,7 +217,7 @@ export const uploadProfilePic = async (req, res, next) => {
         ],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       msg: "Profile Pic Uploaded",
       avatar: req.body.avatar,
     });
@@ -252,7 +250,7 @@ export const resetPassword = async (req, res, next) => {
         ],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       msg: "Password Has Been Reset Successfully",
     });
   } catch (error) {
@@ -283,7 +281,7 @@ export const findPeople = async (req, res, next) => {
     for (let i = 0; i < people.length; i++) {
       people[i].password = undefined;
     }
-    res.status(200).json({
+    return res.status(200).json({
       partners: people,
     });
   } catch (error) {
@@ -314,7 +312,7 @@ export const signout = async (req, res, next) => {
         ],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       msg: "fcm token deleted",
     });
   } catch (error) {
@@ -334,12 +332,16 @@ export const callNotification = async (req, res, next) => {
     to: req.body.fcmToken,
     notification: {
       title: "Hey You Got A Call On Dating App",
-      body: "Call From " + req.body.callerName,
-      sound: "femalevoiceincomingcall.mp3",
+      body: "Call From " + req.body.caller.name,
+      sound: "ringing.mp3",
     },
     data: {
       //you can send only notification or only data(or include both)
       callerSocketId: req.body.socketId,
+      videoCall: req.body.videoCall,
+      callerName: req.body.caller.name,
+      callerAvatar: req.body.caller.avatar,
+      date: new Date(),
     },
   };
   fcm.send(message, (err, response) => {
@@ -352,13 +354,12 @@ export const callNotification = async (req, res, next) => {
         ],
       });
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         msg: "Call Notification Sent",
       });
     }
   });
 };
-
 export const forgetPasswordEmail = async (req, res, next) => {
   let { emailAddress } = req.body;
   let password = Math.floor(10000000 + Math.random() * 80000000).toString();
@@ -396,7 +397,7 @@ export const forgetPasswordEmail = async (req, res, next) => {
         }
       );
       try {
-        res.status(200).json({
+        return res.status(200).json({
           msg: "Password Reset Successful",
         });
       } catch (error) {
@@ -414,6 +415,25 @@ export const forgetPasswordEmail = async (req, res, next) => {
         errors: [
           {
             msg: "Unable To Send You An Temporary Password Email",
+          },
+        ],
+      });
+    });
+};
+
+export const deleteAllUsers = async (req, res, next) => {
+  userModel
+    .remove()
+    .then(() => {
+      return res.status(200).json({
+        msg: "All users deleted",
+      });
+    })
+    .catch(() => {
+      return res.status(409).json({
+        errors: [
+          {
+            msg: "proble Occured in deleting all users",
           },
         ],
       });
