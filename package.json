@@ -1,10 +1,10 @@
 {
-  "name": "adam-server",
+  "name": "secure_restapi",
   "version": "1.0.0",
-  "description": "My Server for ADAM",
+  "description": "DatingApp Node.js Server",
   "main": "index.js",
   "license": "MIT",
-  "private": true,
+  "author": "Abdullah Sami",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",

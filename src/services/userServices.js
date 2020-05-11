@@ -274,7 +274,8 @@ export const findPeople = async (req, res, next) => {
             coordinates: [req.body.lat, req.body.lng],
           },
           $minDistance: 0,
-          $maxDistance: req.body.maxDistance,
+          // $maxDistance: req.body.maxDistance,
+          $maxDistance: 15141,
         },
       },
     });
