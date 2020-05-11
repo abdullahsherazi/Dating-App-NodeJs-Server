@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import expressValidator from "express-validator";
-import { dbURL } from "./src/config/constants";
-import routes from "./src/routes/index";
+import { dbURL } from "./config/constants";
+import routes from "./routes/index";
 
 const server = express();
 const io = require("socket.io")({

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {
   privateKey,
-  Admin,
+  // Admin,
   gmailEmail,
   gmailPassword,
 } from "../config/constants";
