@@ -1,15 +1,22 @@
 {
-  "name": "secure_restapi",
+  "name": "adam-server",
   "version": "1.0.0",
-  "description": "DatingApp Node.js Server",
+  "description": "My Server for ADAM",
   "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
     "build": "babel src --out-dir dist"
   },
-  "author": "Abdullah Sami",
-  "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.7.6",
     "bcryptjs": "^2.4.3",
@@ -24,13 +31,5 @@
     "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
     "socket.io": "^2.3.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-transform-runtime": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "nodemon": "^2.0.2"
   }
 }
