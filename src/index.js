@@ -102,3 +102,8 @@ io.listen(serverListen);
 
 // https://codesquery.com/build-scalable-nodejs-restapi-using-expressjs/
 // https://codesquery.com/build-secure-nodejs-rest-api-using-json-web-token/?fbclid=IwAR06g_VIQZEeG24GtmuUZ1DXCe4DMnCmAZza1iBS3ZnOAs9smxDkZ4zLYrY
+
+
+// For heroku
+// "start": "nodemon --exec babel-node src/index.js",  use this line for running locally
+// "start": "node dist/index.js", use this line when deploying on heroku
