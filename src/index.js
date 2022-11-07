@@ -105,5 +105,5 @@ io.listen(serverListen);
 
 
 // For heroku
-// "start": "nodemon --exec babel-node src/index.js",  use this line for running locally
+// "start": "npx nodemon --exec babel-node src/index.js",  use this line for running locally
 // "start": "node dist/index.js", use this line when deploying on heroku
